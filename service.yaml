@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: testkuber
+spec:
+  type: LoadBalancer
+  selector:
+    app: testkuber
+  ports:
+    - protocol: TCP
+      name: http-traffic
+      port: 8080
+      targetPort: 8080

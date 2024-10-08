@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testkuber
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testkuber
+  template:
+    metadata:
+      labels:
+        app: testkuber
+    spec:
+      containers:
+        - name: testkuber
+          image: infernus31/demo_pr
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            successThreshold: 1

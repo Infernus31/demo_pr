@@ -1,0 +1,32 @@
+#!groovy
+// Run docker build
+properties([disableConcurrentBuilds()])
+pipeline {
+    agent { 
+        label 'master'
+        }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+        timestamps()
+    }
+    stages {
+        stage("create docker image") {
+            steps {
+                echo " ============== start building image =================="
+                dir ('.') {
+                	sh 'docker build . '
+                }
+            }
+        }
+    }
+	    stages {
+        stage("push docker dockerhub") {
+            steps {
+                echo " ============== start push docker dockerhub =================="
+                dir ('.') {
+                	sh 'docker push infernus31/demo_pr'
+                }
+            }
+        }
+    }
+}
