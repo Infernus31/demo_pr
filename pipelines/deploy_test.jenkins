@@ -26,5 +26,13 @@ pipeline {
                 }
             }
         }
+                stage("create tunnel") {
+            steps {
+                echo " ============== start create tunnel =================="
+                dir ('.') {
+                	sh 'minikube tunnel'
+                }
+            }
+        }
     }
 }
