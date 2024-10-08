@@ -1,0 +1,30 @@
+#!groovy
+// Run deploy
+properties([disableConcurrentBuilds()])
+pipeline {
+    agent { 
+        label 'master'
+        }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+        timestamps()
+    }
+    stages {
+        stage("create deployment") {
+            steps {
+                echo " ============== start create deployment =================="
+                dir ('.') {
+                	sh 'kubectl apply -f ./deployment.yaml'
+                }
+            }
+        }
+        stage("create service") {
+            steps {
+                echo " ============== start create service =================="
+                dir ('.') {
+                	sh 'kubectl apply -f ./service.yaml'
+                }
+            }
+        }
+    }
+}
