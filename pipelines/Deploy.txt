@@ -1,0 +1,61 @@
+Started by user Vasiliy Pupkin
+Obtained pipelines/deploy_test.jenkins from git https://github.com/Infernus31/demo_pr.git
+[Pipeline] Start of Pipeline
+[Pipeline] properties
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Deploy_test
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/Deploy_test/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Infernus31/demo_pr.git # timeout=10
+Fetching upstream changes from https://github.com/Infernus31/demo_pr.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.34.1'
+ > git fetch --tags --force --progress -- https://github.com/Infernus31/demo_pr.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 9b9084bcdaaf154bb8e645168e81e8da48b4672e (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 9b9084bcdaaf154bb8e645168e81e8da48b4672e # timeout=10
+Commit message: "add deploy"
+ > git rev-list --no-walk 9b9084bcdaaf154bb8e645168e81e8da48b4672e # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (create deployment)
+[Pipeline] echo
+[2024-10-08T04:27:57.370Z]  ============== start create deployment ==================
+[Pipeline] dir
+[2024-10-08T04:27:57.374Z] Running in /var/lib/jenkins/workspace/Deploy_test
+[Pipeline] {
+[Pipeline] sh
+[2024-10-08T04:27:57.638Z] + kubectl apply -f ./deployment.yaml
+[2024-10-08T04:27:57.638Z] error: error validating "./deployment.yaml": error validating data: failed to download openapi: Get "http://localhost:8080/openapi/v2?timeout=32s": dial tcp 127.0.0.1:8080: connect: connection refused; if you choose to ignore these errors, turn validation off with --validate=false
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (create service)
+Stage "create service" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 1
+Finished: FAILURE

@@ -1,0 +1,89 @@
+Started by user Vasiliy Pupkin
+Obtained pipelines/docker_bild.jenkins from git https://github.com/Infernus31/demo_pr.git
+[Pipeline] Start of Pipeline
+[Pipeline] properties
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Docker_build
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: git
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/Docker_build/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Infernus31/demo_pr.git # timeout=10
+Fetching upstream changes from https://github.com/Infernus31/demo_pr.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.34.1'
+ > git fetch --tags --force --progress -- https://github.com/Infernus31/demo_pr.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision b90b682bdcd30203d8462a64cc73161cc6ff5cdc (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f b90b682bdcd30203d8462a64cc73161cc6ff5cdc # timeout=10
+Commit message: "-"
+ > git rev-list --no-walk b90b682bdcd30203d8462a64cc73161cc6ff5cdc # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (create docker image)
+[Pipeline] echo
+[2024-10-08T01:24:17.181Z]  ============== start building image ==================
+[Pipeline] dir
+[2024-10-08T01:24:17.185Z] Running in /var/lib/jenkins/workspace/Docker_build
+[Pipeline] {
+[Pipeline] sh
+[2024-10-08T01:24:17.450Z] + docker build . -t infernus31/demo_pr
+[2024-10-08T01:24:17.451Z] #0 building with "default" instance using docker driver
+[2024-10-08T01:24:17.451Z] 
+[2024-10-08T01:24:17.451Z] #1 [internal] load build definition from Dockerfile
+[2024-10-08T01:24:17.451Z] #1 transferring dockerfile: 642B done
+[2024-10-08T01:24:17.451Z] #1 DONE 0.0s
+[2024-10-08T01:24:17.451Z] 
+[2024-10-08T01:24:17.451Z] #2 [internal] load metadata for docker.io/library/gradle:7.6.0-jdk19
+[2024-10-08T01:24:18.002Z] #2 DONE 0.6s
+[2024-10-08T01:24:18.002Z] 
+[2024-10-08T01:24:18.002Z] #3 [internal] load .dockerignore
+[2024-10-08T01:24:18.003Z] #3 transferring context: 2B done
+[2024-10-08T01:24:18.003Z] #3 DONE 0.0s
+[2024-10-08T01:24:18.003Z] 
+[2024-10-08T01:24:18.003Z] #4 [1/5] FROM docker.io/library/gradle:7.6.0-jdk19@sha256:71af39c788a072e2ac641a4f87fa9d2a71fc46c017a5041c7aab3ff4fd36c666
+[2024-10-08T01:24:18.003Z] #4 DONE 0.0s
+[2024-10-08T01:24:18.003Z] 
+[2024-10-08T01:24:18.003Z] #5 [internal] load build context
+[2024-10-08T01:24:18.003Z] #5 transferring context: 789B done
+[2024-10-08T01:24:18.003Z] #5 DONE 0.0s
+[2024-10-08T01:24:18.003Z] 
+[2024-10-08T01:24:18.003Z] #6 [2/5] WORKDIR /app/testkuber
+[2024-10-08T01:24:18.003Z] #6 CACHED
+[2024-10-08T01:24:18.003Z] 
+[2024-10-08T01:24:18.003Z] #7 [3/5] COPY src ./src
+[2024-10-08T01:24:18.003Z] #7 CACHED
+[2024-10-08T01:24:18.004Z] 
+[2024-10-08T01:24:18.004Z] #8 [4/5] COPY build.gradle settings.gradle ./
+[2024-10-08T01:24:18.004Z] #8 CACHED
+[2024-10-08T01:24:18.004Z] 
+[2024-10-08T01:24:18.004Z] #9 [5/5] RUN gradle clean bootJar -i --stacktrace
+[2024-10-08T01:24:18.004Z] #9 CACHED
+[2024-10-08T01:24:18.004Z] 
+[2024-10-08T01:24:18.004Z] #10 exporting to image
+[2024-10-08T01:24:18.004Z] #10 exporting layers done
+[2024-10-08T01:24:18.004Z] #10 writing image sha256:090deeb46ffd186d1bc1d34b790091012d9f35a0252af8903e1d66cc296ee5bf done
+[2024-10-08T01:24:18.004Z] #10 naming to docker.io/infernus31/demo_pr done
+[2024-10-08T01:24:18.004Z] #10 DONE 0.0s
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
