@@ -24,3 +24,11 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 5
             successThreshold: 1
+          livenessProbe:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - "/app/testkuber/infernus31/demo_pr --alive"
+            initialDelaySeconds: 10
+            periodSeconds: 5
